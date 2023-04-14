@@ -1,0 +1,88 @@
+.dashboard{
+    color: white;
+    padding: 0px 120px;
+    background-color: #263238;
+}
+.row {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+.col {
+    padding: 10px 20px;
+    text-align: center;
+    color: white;
+    display: flex;
+}
+.dashboard-icon{
+    font-size: 2rem;
+    font-weight: 100;
+    color: #58656c;
+    background: white;
+    padding: 0.2rem;
+    border-radius: 1.5rem;
+}
+.text{
+    font-size: 10px;
+    font-weight: 20%;
+    padding-left: 15px;
+    text-align: left;
+    /* padding-top: 5px; */
+}
+.label{
+    display: block;
+    text-align: left;
+}
+.api-dashboard{
+    position: relative;
+    top: 5px;
+    margin: 5 5%;
+    padding: 5px 5px;
+    text-align: center;
+    background-color: #263238;
+}
+.leftCol{
+    color: white;
+    padding-bottom: 0.5rem ;
+    display: flex;
+    
+}
+.leftColView{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.dashboardInput{
+    padding: 5px 1px;
+    background-color: #263238;
+    border-radius: 1px solid white;
+}
+
+.options{
+    color: white;
+    font: optional;
+}
+.table{
+    border-collapse: collapse;
+    width: 100% ;
+    border-style: initial;
+    font-weight: 10%;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+  }
+
+.th.td {
+    /* padding: 8px; */
+    border: 1px ;
+  }
+  .td{
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .th {
+    background-color: #1d2427;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white;
+  }
+  .tr{
+    border-bottom: 0.3px solid white;
+  }

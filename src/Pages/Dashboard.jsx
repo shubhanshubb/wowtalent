@@ -1,12 +1,11 @@
-import './Dashboard.css'
-import MainDashboard from './MainDashboard';
-import ApiDashboard from './ApiDashboard';
+import MainDashboard from '../Components/MainDashboard';
+import ApiDashboard from '../Components/ApiDashboard';
 
 const Dashboard = () => {      
   return (
     <div>
     <MainDashboard />
-    <ApiDashboard />
+      <ApiDashboard />
     </div>
 
   )

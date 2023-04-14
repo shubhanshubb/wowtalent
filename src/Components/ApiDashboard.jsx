@@ -2,10 +2,12 @@ import "./Dashboard.css";
 import styles from "./DateRange.module.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+// import _ from "lodash";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { AiFillApple, AiFillAndroid } from "react-icons/ai";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { DateRange } from "react-date-range";
+import { format } from "date-fns";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 
@@ -19,15 +21,16 @@ const ApiDashboard = () => {
       key: "selection",
     },
   ]);
+  
   const [anchor, setAnchor] = useState({
     top: null,
     left: null,
   });
-
+  
   useEffect(() => {
     axios
       .get(
-        "https://admindevapi.wowtalent.live/api/admin/dashboard/installstatasticlist?fromdate=2022-04-01&todate=2022-08-24&page=1&limit=10"
+        "https://admindevapi.wowtalent.live/api/admin/dashboard/installstatasticlist?fromdate=2022-04-01&todate=2022-08-24&page=1&limit=118"
       )
       .then((res) => {
         console.log(res);
@@ -37,6 +40,10 @@ const ApiDashboard = () => {
         console.log(err);
       });
   });
+  // const pageSize = 18;
+  // const pageCount = posts ? Math.ceil(posts.length/pageSize) : 0;
+  // if (pageCount === 1) return null;
+  // const pages = _.range(1, pageCount+1)
 
   return (
     <div>
@@ -107,57 +114,66 @@ const ApiDashboard = () => {
         <table className="table">
           <thead>
             <tr>
-              <th className="th" width="150">
+              <th className="th" align="left">
                 Date
               </th>
-              <th className="th">Day Installs</th>
-              <th className="th">platform</th>
-              <th className="th">Day Uninstalls</th>
-              <th className="th">Platform</th>
-              <th className="th">Churn Rate</th>
-              <th className="th">Churn Platform</th>
+              <th className="th" align="left">
+                Day Installs
+              </th>
+              <th className="th" align="left">
+                platform
+              </th>
+              <th className="th" align="left">
+                Day Uninstalls
+              </th>
+              <th className="th" align="left">
+                Platform
+              </th>
+              <th className="th" align="left">
+                Churn Rate
+              </th>
+              <th className="th" align="left">
+                Churn Platform
+              </th>
             </tr>
           </thead>
           <tbody>
-            {posts.map((r, i) => (
+            {posts.map((row, i) => (
               <tr key={i} className="tr">
-                <td className="td">
-                  {new Date(r.created_At)
-                    .toDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })
-                    .replace(/,.+/, "")}
+                <td className="td" align="left">
+                  {format(new Date(row.created_At), "dd MMM yyyy")}
                 </td>
-                <td className="td">{r.totalinstall}</td>
-                <td className="td">
+                <td className="td" align="left">{row.totalinstall}</td>
+                <td className="td" align="left">
                   <AiFillAndroid />
-                  &nbsp;{r.android_install}
+                  &nbsp;{row.android_install}
                   <br />
                   <AiFillApple />
-                  &nbsp;{r.ios_install}
+                  &nbsp;{row.ios_install}
                 </td>
-                <td className="td">{r.totaluninstall}</td>
-                <td className="td">
+                <td className="td" align="left">{row.totaluninstall}</td>
+                <td className="td" align="left">
                   <AiFillAndroid />
-                  &nbsp;{r.android_uninstall}
+                  &nbsp;{row.android_uninstall}
                   <br />
                   <AiFillApple />
-                  &nbsp;{r.ios_uninstall}
+                  &nbsp;{row.ios_uninstall}
                 </td>
-                <td className="td">{r.totalchurn}</td>
-                <td className="td">
+                <td className="td" align="left">{row.totalchurn}</td>
+                <td className="td" align="left">
                   <AiFillAndroid />
-                  &nbsp;{r.android_churn}
+                  &nbsp;{row.android_churn}
                   <br />
                   <AiFillApple />
-                  &nbsp;{r.ios_churn}
+                  &nbsp;{row.ios_churn}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        <div className="dashboardPagination">
+          
+        </div>
       </div>
     </div>
   );
